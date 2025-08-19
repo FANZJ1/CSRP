@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrap">
+      <div class="msg">message1</div>
+      <div class="block"></div>
+    </div>
+    <div class="box1">
+      <span>CLient</span>
+    </div>
+    <div class="bar"></div>
+    <div class="box2">
+      <span>Serve</span>
+    </div>
+    <span class="tips">认证成功</span>
+  </div>
+
+  <button class="start">点我</button>
+  <button class="refresh">复位</button>
+</body>
+
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .box1,
+  .box2 {
+    width: 200px;
+    height: 200px;
+    float: left;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 200px;
+  }
+
+  .box1,
+  .box2 span {
+    font-size: 30px;
+  }
+
+  .box1 {
+    background-color: aqua;
+
+  }
+
+  .box2 {
+    background-color: antiquewhite;
+  }
+
+  .bar {
+    height: 20px;
+    width: 400px;
+    background-color: rgb(168, 168, 131);
+    float: left;
+    margin: 0 5px;
+    border-radius: 6px;
+  }
+
+  .wrap {
+    position: absolute;
+    left: 100px;
+    top: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .block {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+  }
+
+  .start {
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-left: 355px;
+
+  }
+
+  .refresh {
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 5px 10px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .tips {
+    position: absolute;
+    color: red;
+    font-size: 18px;
+    left: 381px;
+    top: 13px;
+  }
+</style>
+
+<script>
+  var flag = true
+  $(document).ready(function () {
+    $('.tips').hide()
+    $('.start').click(function () {
+      if (flag) {
+        $('.msg').text('message1')
+        $('.tips').hide()
+        $('.block').css({
+          'background-color': 'aqua'
+        })
+        $('.wrap').animate({
+          left: '+650px',
+          easr: 'linear'
+        }, 5000)
+      } else {
+        setTimeout(function () {
+          $('.tips').show()
+        }, 5000)
+
+        $('.block').css({
+          'background-color': 'antiquewhite'
+        })
+        $('.msg').text('message2')
+        $('.wrap').animate({
+          left: '100px'
+        }, 5000)
+      }
+      flag = !flag
+      $('.wrap').show()
+    })
+
+    $('.refresh').click(function () {
+      $('.wrap').hide()
+      $('.tips').hide()
+      $('.wrap').animate({
+        left: '0px',
+        easr: 'linear'
+      }, 10)
+      $('.wrap').show()
+      flag = true
+    })
+  })
+</script>
+
+</html>
